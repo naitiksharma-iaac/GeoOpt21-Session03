@@ -11,8 +11,6 @@ hops = hs.Hops(app)
     name = "meshFromPoints",
     inputs=[
         hs.HopsPoint("Points", "P", "Some Points", hs.HopsParamAccess.LIST)
-
-
     ],
 
     outputs=[
@@ -28,7 +26,9 @@ def meshFromPoints(pts):
         m.Vertices.Add(p.X, p.Y, p.Z)
 
     
-    m.Faces.AddFace(0,1,2,2) #triangular meshes repeat the last number!
+    m.Faces.AddFace(0,1,2,3) #triangular meshes repeat the last number!
+    m.Faces.AddFace(2,3,4,5)
+    m.Faces.AddFace(5,4,7,6)
 
     print (m.Faces[0])
     print (m.Faces.TriangleCount)
@@ -41,6 +41,7 @@ def meshFromPoints(pts):
 @hops.component(
     "/gridMesh",
     name = "gridMesh",
+    
     outputs=[
         hs.HopsMesh("Mesh","M","A simple rhino3dm mesh"),
 
